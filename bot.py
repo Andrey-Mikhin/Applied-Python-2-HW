@@ -522,10 +522,8 @@ async def handle_all_messages(message: types.Message):
         await message.answer("Используйте /start для списка команд")
 
 async def on_startup():
+    """Функция запуска при старте бота"""
     try:
-        await bot.delete_webhook(drop_pending_updates=True)
-        logger.info("✅ Вебхуки очищены, отложенные обновления удалены")
-        
         logger.info("=" * 50)
         logger.info("🤖 ЗАПУСК БОТА ДЛЯ КОНТРОЛЯ ЗДОРОВЬЯ")
         logger.info("=" * 50)
@@ -561,3 +559,4 @@ if __name__ == "__main__":
         logger.info("🛑 Бот остановлен пользователем (Ctrl+C)")
     except Exception as e:
         logger.critical(f"❌ НЕОБРАБОТАННАЯ ОШИБКА: {e}")
+
