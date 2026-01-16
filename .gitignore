@@ -1,0 +1,39 @@
+# Python
+__pycache__/*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+
+# Базы данных
+*.db
+*.sqlite
+health.db
+bot.log
+
+# Логи
+*.log
+*.log.*
+
+# Конфигурация и секреты
+.env
+*.env
+.env.local
+secrets.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# Операционные системы
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker
+.dockerignore
