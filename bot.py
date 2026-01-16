@@ -1,4 +1,4 @@
-﻿from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram import BaseMiddleware
 from aiogram.types import Update, Message
@@ -505,7 +505,6 @@ async def handle_all_messages(message: types.Message):
                     await message.answer(f"❌ Ошибка при получении рекомендаций")
                     
             elif command in ['/start', '/help', '/profile', '/setprofile', '/reset']:
-
                 pass
             else:
                 await message.answer(
@@ -522,9 +521,11 @@ async def handle_all_messages(message: types.Message):
     else:
         await message.answer("Используйте /start для списка команд")
 
-async def main():
-    """Основная функция запуска бота"""
+async def on_startup():
     try:
+        await bot.delete_webhook(drop_pending_updates=True)
+        logger.info("✅ Вебхуки очищены, отложенные обновления удалены")
+        
         logger.info("=" * 50)
         logger.info("🤖 ЗАПУСК БОТА ДЛЯ КОНТРОЛЯ ЗДОРОВЬЯ")
         logger.info("=" * 50)
@@ -536,7 +537,15 @@ async def main():
         logger.info(f"Имя бота: @{(await bot.me()).username}")
         logger.info("=" * 50)
         
-        await dp.start_polling(bot)
+    except Exception as e:
+        logger.error(f"Ошибка при старте бота: {e}")
+        raise
+
+async def main():
+    try:
+        await on_startup()
+        
+        await dp.start_polling(bot, skip_updates=True)
         
     except Exception as e:
         logger.critical(f"❌ КРИТИЧЕСКАЯ ОШИБКА ПРИ ЗАПУСКЕ БОТА: {e}")
@@ -551,5 +560,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         logger.info("🛑 Бот остановлен пользователем (Ctrl+C)")
     except Exception as e:
-
         logger.critical(f"❌ НЕОБРАБОТАННАЯ ОШИБКА: {e}")
