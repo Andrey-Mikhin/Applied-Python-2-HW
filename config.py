@@ -1,4 +1,10 @@
-﻿import os
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY')
 
 FOOD_DB = {
     "яблоко": 52, "банан": 89, "апельсин": 47, "груша": 57,
@@ -27,4 +33,5 @@ FOOD_DB = {
     "семечки": 578, "фисташки": 560,
     
     "кофе": 1, "чай": 1, "сок": 45, "кола": 42,
+
     "пиво": 43, "вино": 83, "водка": 235}
