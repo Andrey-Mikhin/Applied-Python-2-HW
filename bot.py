@@ -522,7 +522,6 @@ async def handle_all_messages(message: types.Message):
         await message.answer("Используйте /start для списка команд")
 
 async def on_startup():
-    """Функция запуска при старте бота"""
     try:
         logger.info("=" * 50)
         logger.info("🤖 ЗАПУСК БОТА ДЛЯ КОНТРОЛЯ ЗДОРОВЬЯ")
@@ -559,4 +558,5 @@ if __name__ == "__main__":
         logger.info("🛑 Бот остановлен пользователем (Ctrl+C)")
     except Exception as e:
         logger.critical(f"❌ НЕОБРАБОТАННАЯ ОШИБКА: {e}")
+
 
