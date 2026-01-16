@@ -13,8 +13,8 @@ load_dotenv()
 
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 if not TELEGRAM_TOKEN:
-    raise ValueError("TELEGRAM_TOKEN не найден в переменных окружения. "
-                     "Создайте файл .env с TELEGRAM_TOKEN=ваш_токен")
+    print("❌ TELEGRAM_TOKEN не найден. Бот не запустится.")
+    exit(1)
 
 from database import init_db, save_user, get_user, add_log, get_today_stats, clear_user_logs
 from utils import get_weather, get_calories, calculate_goals, calculate_burned_calories
@@ -551,4 +551,5 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         logger.info("🛑 Бот остановлен пользователем (Ctrl+C)")
     except Exception as e:
+
         logger.critical(f"❌ НЕОБРАБОТАННАЯ ОШИБКА: {e}")
